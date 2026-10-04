@@ -7,7 +7,7 @@ public class GradeReport extends Report {
 
     public GradeReport(String id, Formatter formatter, List<Integer> grades) {
         super(id, formatter);
-        this.grades = grades;
+        this.grades = List.copyOf(grades);
     }
 
     public List<Integer> getGrades() { return grades; }
