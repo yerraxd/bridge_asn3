@@ -18,12 +18,12 @@ public abstract class Report {
     }
 
     public String execute() {
-        String result = formatter.title(reportTitle());
         String[][] data = calculate();
+        String[] lines = new String[data.length];
         for (int i = 0; i < data.length; i++) {
-            result = result + formatter.line(data[i][0], data[i][1]);
+            lines[i] = formatter.line(data[i][0], data[i][1]);
         }
-        return result;
+        return formatter.document(formatter.title(reportTitle()), lines);
     }
 
     protected abstract String reportTitle();
