@@ -43,16 +43,26 @@ public class Main {
         return s.replace("\n", "\\n");
     }
     private static void runtimeSwitchCheck() {
-        AttendanceReport report = new AttendanceReport("R1", new TextFormatter(), 3, 4);
-        String before = report.execute();
-        report.setImplementation(new HtmlFormatter());
-        String after = report.execute();
+        AttendanceReport original = new AttendanceReport("R1", new TextFormatter(), 3, 4);
+        Report saved = original;
+        String before = original.execute();
+        original.setImplementation(new HtmlFormatter());
+        String after = original.execute();
 
-        boolean ok = report.getId().equals("R1")
+        boolean sameObject = (original == saved);
+        boolean stateUnchanged = original.getId().equals("R1")
+                && original.getAttended() == 3 && original.getTotal() == 4;
+        boolean ok = sameObject && stateUnchanged
                 && before.equals(ATT_TEXT) && after.equals(ATT_HTML);
+
         total++;
         if (ok) passed++;
         System.out.println("T5 " + (ok ? "PASS" : "FAIL")
-                + " | before=" + show(before) + " | after=" + show(after));
+                + " | sameObject=" + sameObject + " | stateUnchanged=" + stateUnchanged);
+        System.out.println("  before=" + show(before) + " | after=" + show(after));
+        if (!ok) {
+            System.out.println("  expectedBefore=" + show(ATT_TEXT)
+                    + " | expectedAfter=" + show(ATT_HTML));
+        }
     }
 }
