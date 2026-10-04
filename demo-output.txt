@@ -1,0 +1,9 @@
+T1 PASS | AttendanceReport + TextFormatter | result=ATTENDANCE REPORT | attended=3 | total=4 | rate=75%
+T2 PASS | AttendanceReport + HtmlFormatter | result=<html><body><h1>Attendance Report</h1><p>attended: 3</p><p>total: 4</p><p>rate: 75%</p></body></html>
+T3 PASS | GradeReport + TextFormatter | result=GRADE REPORT | count=3 | average=80
+T4 PASS | GradeReport + HtmlFormatter | result=<html><body><h1>Grade Report</h1><p>count: 3</p><p>average: 80</p></body></html>
+T5 PASS | sameObject=true | stateUnchanged=true
+  before=ATTENDANCE REPORT | attended=3 | total=4 | rate=75% | after=<html><body><h1>Attendance Report</h1><p>attended: 3</p><p>total: 4</p><p>rate: 75%</p></body></html>
+T6 PASS | AttendanceReport + MarkdownFormatter | result=# Attendance Report\n- attended: 3\n- total: 4\n- rate: 75%
+T7 PASS | GradeReport + MarkdownFormatter | result=# Grade Report\n- count: 3\n- average: 80
+SUMMARY: 7/7 PASS

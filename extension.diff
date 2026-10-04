@@ -1,3 +1,27 @@
+diff --git a/src/Main.java b/src/Main.java
+index e593ba5..2190abb 100644
+--- a/src/Main.java
++++ b/src/Main.java
+@@ -9,6 +9,8 @@ public class Main {
+     static final String ATT_HTML = "<html><body><h1>Attendance Report</h1><p>attended: 3</p><p>total: 4</p><p>rate: 75%</p></body></html>";
+     static final String GR_TEXT  = "GRADE REPORT | count=3 | average=80";
+     static final String GR_HTML  = "<html><body><h1>Grade Report</h1><p>count: 3</p><p>average: 80</p></body></html>";
++    static final String ATT_MD = "# Attendance Report\n- attended: 3\n- total: 4\n- rate: 75%";
++    static final String GR_MD  = "# Grade Report\n- count: 3\n- average: 80";
+ 
+     public static void main(String[] args) {
+         if (args.length == 0 || !args[0].equals("--demo")) {
+@@ -25,6 +27,10 @@ public class Main {
+         check("T4", "GradeReport + HtmlFormatter",
+                 new GradeReport("G1", new HtmlFormatter(), List.of(70, 80, 90)).execute(), GR_HTML);
+         runtimeSwitchCheck();
++        check("T6", "AttendanceReport + MarkdownFormatter",
++                new AttendanceReport("A1", new MarkdownFormatter(), 3, 4).execute(), ATT_MD);
++        check("T7", "GradeReport + MarkdownFormatter",
++                new GradeReport("G1", new MarkdownFormatter(), List.of(70, 80, 90)).execute(), GR_MD);
+ 
+         System.out.println("SUMMARY: " + passed + "/" + total + " PASS");
+     }
 diff --git a/src/reports/MarkdownFormatter.java b/src/reports/MarkdownFormatter.java
 new file mode 100644
 index 0000000..e5102c9
