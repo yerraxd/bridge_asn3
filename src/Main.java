@@ -24,6 +24,7 @@ public class Main {
                 new GradeReport("G1", new TextFormatter(), List.of(70, 80, 90)).execute(), GR_TEXT);
         check("T4", "GradeReport + HtmlFormatter",
                 new GradeReport("G1", new HtmlFormatter(), List.of(70, 80, 90)).execute(), GR_HTML);
+        runtimeSwitchCheck();
 
         System.out.println("SUMMARY: " + passed + "/" + total + " PASS");
     }
