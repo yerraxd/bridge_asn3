@@ -42,4 +42,17 @@ public class Main {
     private static String show(String s) {
         return s.replace("\n", "\\n");
     }
+    private static void runtimeSwitchCheck() {
+        AttendanceReport report = new AttendanceReport("R1", new TextFormatter(), 3, 4);
+        String before = report.execute();
+        report.setImplementation(new HtmlFormatter());
+        String after = report.execute();
+
+        boolean ok = report.getId().equals("R1")
+                && before.equals(ATT_TEXT) && after.equals(ATT_HTML);
+        total++;
+        if (ok) passed++;
+        System.out.println("T5 " + (ok ? "PASS" : "FAIL")
+                + " | before=" + show(before) + " | after=" + show(after));
+    }
 }
